@@ -66,6 +66,9 @@ class TestPasswordGenerator(unittest.TestCase):
             all(character in string.ascii_letters for character in password)
         )
 
+    def test_rejects_password_length_below_minimum(self):
+        with self.assertRaises(ValueError):
+            generate_password(7)
 
 if __name__ == "__main__":
     unittest.main()

@@ -4,6 +4,9 @@ import string
 
 
 def generate_password(length, use_digits=True, use_symbols=True):
+    if length < 8:
+        raise ValueError("Password length must be at least 8. ")
+
     characters = string.ascii_letters
     password_chars = []
 
