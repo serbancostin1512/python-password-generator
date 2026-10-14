@@ -5,20 +5,22 @@ import string
 
 def generate_password(length, use_digits=True, use_symbols=True):
     characters = string.ascii_letters
+    password_chars = []
 
     if use_digits :
         characters += string.digits
+        password_chars.append(secrets.choice(string.digits))
     
     if use_symbols:
         characters += string.punctuation
-    
-    password = ""
+        password_chars.append(secrets.choice(string.punctuation))
 
-    for i in range(length):
-        password += secrets.choice(characters)
+    while len(password_chars) < length :
+        password_chars.append(secrets.choice(characters))
 
-    return password
+    secrets.SystemRandom().shuffle(password_chars)
 
+    return "".join(password_chars)
 
 def main():
     print("=== PASSWORD GENERATOR ===")
